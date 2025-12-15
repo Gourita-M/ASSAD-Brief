@@ -18,7 +18,10 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    <?php include "./Pages/Header.php"; ?>
+
+    <?php 
+    include "./Pages/Header.php"; 
+    ?>
  
     <section class="relative bg-[url('https://images.unsplash.com/photo-1546182990-dffeafbe841d')] bg-cover bg-center h-[80vh]">
         <div class="absolute inset-0 bg-black/60"></div>
@@ -127,55 +130,79 @@
         </div>
     </section>
 
-    
-    <div class="fixed hidden inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
 
-        
-        <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-xl relative animate-fadeIn">
+<div id="formpop" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
 
-            
-            <button
-                class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-xl font-bold">
-                ✕
-            </button>
+  <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-xl relative animate-fadeIn">
 
-            <h3 class="text-2xl font-bold mb-6 text-center text-green-900">
-                Register
-            </h3>
+    <button class="closepop absolute top-4 right-4 text-gray-500 hover:text-red-600 text-xl font-bold">
+      ✕
+    </button>
 
-            <form class="space-y-4" method="POST">
-                <input
-                    type="email"
-                    placeholder="Email"
-                    class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-                    required>
+    <h3 class="logintext text-2xl font-bold mb-6 text-center text-green-900">
+      Login
+    </h3>
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-                    required>
+    <form id="loginForm" class="space-y-4">
 
-                <select
-                    class="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-                    <option value="visitor">Visitor</option>
-                    <option value="guide">Guide</option>
-                </select>
+      <input type="email" placeholder="Email"
+        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
 
-                <button
-                    type="submit"
-                    class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-900 transition">
-                    Submit
-                </button>
-            </form>
+      <input type="password" placeholder="Password"
+        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
 
-            <p class="text-sm text-center text-gray-500 mt-4">
-                Guide accounts require admin approval
-            </p>
-        </div>
-    </div>
+      <button type="submit"
+        class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-900">
+        Login
+      </button>
+
+      <p class="text-sm text-center text-gray-600">
+        Don’t have an account?
+        <span class="switchto text-green-700 font-semibold cursor-pointer hover:underline">
+          Register
+        </span>
+      </p>
+    </form>
+
+    <form id="registerForm" class="space-y-4 hidden">
+
+      <input type="text" placeholder="Full Name"
+        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
+
+      <input type="email" placeholder="Email"
+        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
+
+      <input type="password" placeholder="Password"
+        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
+
+      <select class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600">
+        <option value="visitor">Visitor</option>
+        <option value="guide">Guide</option>
+      </select>
+
+      <button type="submit"
+        class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-900">
+        Register
+      </button>
+
+      <p class="text-sm text-center text-gray-600">
+        Already have an account?
+        <span class="switchto2 text-green-700 font-semibold cursor-pointer hover:underline">
+          Login
+        </span>
+      </p>
+
+      <p class="text-xs text-center text-gray-500">
+        Guide accounts require admin approval
+      </p>
+    </form>
+
+  </div>
+</div>
+
 
     <?php include "./Pages/Footer.php"; ?>
+    <script src="./index.js"></script>
 </body>
 
 </html>
