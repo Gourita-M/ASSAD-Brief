@@ -6,7 +6,7 @@
                 <a href="#animals" class="hover:text-yellow-300">Animals</a>
                 <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
                 <a href="#asaad" class="hover:text-yellow-300">Asaad</a>
-                <button id="loginbtn" class="bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
+                <button class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
                     Login / Register
                 </button>
             </nav>

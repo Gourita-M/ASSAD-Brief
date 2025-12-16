@@ -1,5 +1,5 @@
 
-const loginbtn = document.getElementById('loginbtn');
+const loginbtn = document.querySelector('.loginbtn')
 const formpop = document.getElementById('formpop');
 const closelogin = document.querySelector('.closepop');
 const loginForm = document.getElementById('loginForm');
