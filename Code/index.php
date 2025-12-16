@@ -1,3 +1,10 @@
+<?php 
+   include "./Pages/conn_sql.php";
+   $getanimls = "SELECT *
+           FROM habitats, animaux
+           WHERE habitats.id_habi = animaux.id_habitat";
+   $result = $conn->query($getanimls);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +86,20 @@
             </div>
 
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-               
+                <?php
+                  foreach($result as $res){
+                    echo "
+                        <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
+                            <img src='{$res['image']}' class='rounded-t-lg h-48 w-full object-cover'>
+                          <div class='p-4'>
+                            <h4 class='font-bold text-lg'>{$res['ani_nom']}</h4>
+                            <p class='text-sm text-gray-600'>Habitat: {$res['nom_habi']}</p>
+                            <p class='text-sm text-gray-600'>Origin: {$res['paysorigine']}</p>
+                          </div>
+                        </div>
+                        ";
+                  }
+                ?>
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
                     <img src="https://images.unsplash.com/photo-1598755257130-c2aaca1f061c" class="rounded-t-lg h-48 w-full object-cover">
                     <div class="p-4">
