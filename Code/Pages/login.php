@@ -1,22 +1,18 @@
 <?php
     include "./conn_sql.php";
     $error = "";
+    
     if($_SERVER["REQUEST_METHOD"] === "POST"){
       $email = $_POST['email'];
       $password = $_POST['password'];
       
-      $sql = "SELECT * 
-              FROM utilisateurs  
-              WHERE utilisateurs.email = '$email'
-              AND utilisateurs.motpasse_hash = '$password'
+      $sql = "SELECT * FROM utilisateurs
               ";
       $result = $conn->query($sql);
-      foreach($result as $reso){
-        if($email != $reso['email'] || $password != $reso['password']){
-          $error = "test";
-          header("Location: ../index.php");
-          exit;
-        }
+      foreach($result as $reso ){
+        if($reso['email'] != $email || $reso['motpasse_hash'])
+        echo $reso['email'];
+        echo $reso['motpasse_hash'];
       }
     }
       
