@@ -1,9 +1,15 @@
 <?php 
+   session_start();
    include "./Pages/conn_sql.php";
    $getanimls = "SELECT *
            FROM habitats, animaux
            WHERE habitats.id_habi = animaux.id_habitat";
    $result = $conn->query($getanimls);
+   //$_SESSION["username"] = $_POST['id'];
+   //$_SESSION["password"] = "Teee";
+
+   echo $_SESSION['username'];
+   echo $_SESSION['password'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,16 +94,7 @@
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <?php
                   foreach($result as $res){
-                    echo "
-                        <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
-                            <img src='{$res['image']}' class='rounded-t-lg h-48 w-full object-cover'>
-                          <div class='p-4'>
-                            <h4 class='font-bold text-lg'>{$res['ani_nom']}</h4>
-                            <p class='text-sm text-gray-600'>Habitat: {$res['nom_habi']}</p>
-                            <p class='text-sm text-gray-600'>Origin: {$res['paysorigine']}</p>
-                          </div>
-                        </div>
-                        ";
+                    addanimals($res);
                   }
                 ?>
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
@@ -140,79 +137,23 @@
         </div>
     </section>
 
-
-<div id="formpop" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-
-  <div class="bg-white w-full max-w-md p-8 rounded-2xl shadow-xl relative animate-fadeIn">
-
-    <button class="closepop absolute top-4 right-4 text-gray-500 hover:text-red-600 text-xl font-bold">
-      ✕
-    </button>
-
-    <h3 class="logintext text-2xl font-bold mb-6 text-center text-green-900">
-      Login
-    </h3>
-
-    <form id="loginForm" class="space-y-4">
-
-      <input type="email" placeholder="Email"
-        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
-
-      <input type="password" placeholder="Password"
-        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
-
-      <button type="submit"
-        class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-900">
-        Login
-      </button>
-
-      <p class="text-sm text-center text-gray-600">
-        Don’t have an account?
-        <span class="switchto text-green-700 font-semibold cursor-pointer hover:underline">
-          Register
-        </span>
-      </p>
-    </form>
-
-    <form id="registerForm" class="space-y-4 hidden">
-
-      <input type="text" placeholder="Full Name"
-        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
-
-      <input type="email" placeholder="Email"
-        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
-
-      <input type="password" placeholder="Password"
-        class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600" required>
-
-      <select class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-600">
-        <option value="visitor">Visitor</option>
-        <option value="guide">Guide</option>
-      </select>
-
-      <button type="submit"
-        class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-900">
-        Register
-      </button>
-
-      <p class="text-sm text-center text-gray-600">
-        Already have an account?
-        <span class="switchto2 text-green-700 font-semibold cursor-pointer hover:underline">
-          Login
-        </span>
-      </p>
-
-      <p class="text-xs text-center text-gray-500">
-        Guide accounts require admin approval
-      </p>
-    </form>
-
-  </div>
-</div>
-
-
     <?php include "./Pages/Footer.php"; ?>
-    <script src="./index.js"></script>
+ 
 </body>
 
 </html>
+<?php
+  function addanimals($arr){
+    echo "
+          <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
+              <img src='{$arr['image']}' class='rounded-t-lg h-48 w-full object-cover'>
+              <div class='p-4'>
+                <h4 class='font-bold text-lg'>{$arr['ani_nom']}</h4>
+                <p class='text-sm text-gray-600'>Habitat: {$arr['nom_habi']}</p>
+                <p class='text-sm text-gray-600'>Origin: {$arr['paysorigine']}</p>
+            </div>
+          </div>
+                        ";
+                  
+  }
+?>

@@ -6,9 +6,26 @@
                 <a href="#animals" class="hover:text-yellow-300">Animals</a>
                 <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
                 <a href="#asaad" class="hover:text-yellow-300">Asaad</a>
-                <button class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
-                    Login / Register
-                </button>
+                <?php 
+                    if(isset($_POST['id'])){
+                        echo '
+                            <span class="font-semibold text-green-800">
+                                Welcome Back
+                            </span>
+                            <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
+                                Logout
+                            </a>  
+                        ';
+                    }
+                    else {
+                        echo '
+                            <a href="./Pages/login.php" class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
+                                Login / Register
+                            </a>
+                        ';
+                    }
+                ?>
+                
             </nav>
         </div>
     </header>
