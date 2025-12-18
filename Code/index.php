@@ -25,12 +25,18 @@
             <nav class="space-x-6 hidden md:block">
                 <a href="#animals" class="hover:text-yellow-300">Animals</a>
                 <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
-                <a href="#asaad" class="hover:text-yellow-300">Asaad</a>
+                <?php 
+                    if(isset($_SESSION['role'])){
+                    if($_SESSION['role'] === 'ADMIN'){
+                        echo '<a href="./Pages/DASHBOARD.php" class="hover:text-yellow-300">DashBoard</a>';
+                    }
+                }
+                ?>
                 <?php 
                     if(isset($_SESSION['username'])){
                         echo '
-                            <span class="font-semibold text-green-800">
-                                Welcome Back '.$_SESSION['username'].'
+                            <span class="font-semibold text-green-300">
+                                Welcome Back
                             </span>
                                 '.$_SESSION['username'].'
                             <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
