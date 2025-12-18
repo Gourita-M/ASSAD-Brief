@@ -5,11 +5,6 @@
            FROM habitats, animaux
            WHERE habitats.id_habi = animaux.id_habitat";
    $result = $conn->query($getanimls);
-   //$_SESSION["username"] = $_POST['id'];
-   //$_SESSION["password"] = "Teee";
-
-   echo $_SESSION['username'];
-   echo $_SESSION['password'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +18,38 @@
 
 <body class="bg-gray-50 text-gray-800">
 
-    <?php 
-    include "./Pages/Header.php"; 
-    ?>
+    <header class="bg-green-900 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <a href="./index.php" class="text-2xl font-bold tracking-wide">🦁 ASSAD Virtual Zoo</a>
+
+            <nav class="space-x-6 hidden md:block">
+                <a href="#animals" class="hover:text-yellow-300">Animals</a>
+                <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
+                <a href="#asaad" class="hover:text-yellow-300">Asaad</a>
+                <?php 
+                    if(isset($_SESSION['username'])){
+                        echo '
+                            <span class="font-semibold text-green-800">
+                                Welcome Back '.$_SESSION['username'].'
+                            </span>
+                                '.$_SESSION['username'].'
+                            <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
+                                Logout
+                            </a>  
+                        ';
+                    }
+                    else {
+                        echo '
+                            <a href="./Pages/login.php" class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
+                                Login / Register
+                            </a>
+                        ';
+                    }
+                ?>
+                
+            </nav>
+        </div>
+    </header>
  
     <section class="relative bg-[url('https://images.unsplash.com/photo-1546182990-dffeafbe841d')] bg-cover bg-center h-[80vh]">
         <div class="absolute inset-0 bg-black/60"></div>
@@ -146,14 +170,24 @@
   function addanimals($arr){
     echo "
           <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
-              <img src='{$arr['image']}' class='rounded-t-lg h-48 w-full object-cover'>
-              <div class='p-4'>
-                <h4 class='font-bold text-lg'>{$arr['ani_nom']}</h4>
-                <p class='text-sm text-gray-600'>Habitat: {$arr['nom_habi']}</p>
-                <p class='text-sm text-gray-600'>Origin: {$arr['paysorigine']}</p>
+    <img src='{$arr['image']}' class='rounded-t-lg h-48 w-full object-cover'>
+
+    <div class='p-4'>
+        <h4 class='font-bold text-lg'>{$arr['ani_nom']}</h4>
+        <p class='text-sm text-gray-600'>Habitat: {$arr['nom_habi']}</p>
+        <p class='text-sm text-gray-600'>Origin: {$arr['paysorigine']}</p>
+        <div class='flex justify-end gap-1 mt-4'>
+            <div class='mt-4 flex gap-2'>
+                    <a href='./Pages/edit.php?id={$arr["an_id"]}' 
+                    class='bg-yellow-400 text-white px-3 py-1 rounded'>Edit</a>
+                    <a href='./Pages/delete.php?id={$arr["an_id"]}'
+                    class='bg-red-500 text-white px-3 py-1 rounded'>Delete</a>
             </div>
-          </div>
-                        ";
+        </div>
+      </div>
+    </div>
+
+                                ";
                   
   }
 ?>

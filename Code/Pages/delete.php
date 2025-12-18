@@ -1,0 +1,43 @@
+<?php
+include "./conn_sql.php";
+
+ $id = $_GET['id'];
+
+$sql = "SELECT * FROM animaux WHERE an_id = $id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+if(isset($_POST["confirm"])){
+    $delete_table = "DELETE FROM animaux
+                  WHERE an_id = $id";
+    $conn->query($delete_table);
+    header("Location: ../index.php");
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoo Encyclopedia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <?php
+   include "./Header.php"
+  ?>
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md text-center">
+        <h2 class="text-2xl font-bold mb-4">Delete Animal</h2>
+        <p class="mb-6">Are you sure you want to delete <span class="font-semibold"><?php echo $row['ani_nom']; ?></span>?</p>
+        <form method="post" class="flex justify-center gap-4">
+            <button type="submit" name="confirm" class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">Yes, Delete</button>
+            <a href="../index.php" class="bg-gray-300 text-gray-800 px-6 py-2 rounded hover:bg-gray-400">Cancel</a>
+        </form>
+    </div>
+</div>
+    <?php
+    include "./Footer.php"
+    ?>
+</body>
+</html>
