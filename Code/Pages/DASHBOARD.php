@@ -1,5 +1,24 @@
+<?php 
+    session_start();
+    include "conn_sql.php";
+    
+    $animalslist = "SELECT *
+                    FROM animaux";
+
+    $animresult = $conn->query($animalslist);
+    
+    $habitatlist = "SELECT * 
+                    FROM habitats";
+
+    $habitatresult = $conn->query($habitatlist);
+    
+    $users = "SELECT id_user, nom_user, email, user_role, user_Status
+              FROM utilisateurs";
+    $userlist = $conn->query($users);
+
+?>
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth" >
+<html lang="en" class="scroll-smooth" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,47 +30,25 @@
    include "./Header.php"
   ?>
   <main class="p-6 max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-green-900">Tableau de bord Administrateur</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <h2 class="text-3xl font-semibold mb-6 text-green-900">Administrator Dashboard</h2>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
 
       <section class="bg-white rounded shadow p-5">
-        <h3 class="text-xl font-semibold mb-4 border-b border-green-200 pb-2 text-green-800">Gestion des animaux</h3>
+        <h3 class="text-center text-xl font-semibold mb-4 border-b border-green-200 pb-2 text-green-800">Animal/Habitat Management</h3>
         <ul class="space-y-3 text-gray-700">
           <li>
+            <a href="./add_animals.php">
             <button class="w-full bg-yellow-500 text-white rounded px-4 py-2 hover:bg-yellow-600 transition">
-              Ajouter un animal
+              Add an Animal
             </button>
+          </a>
           </li>
           <li>
+            <a href="./add_habitat.php">
             <button class="w-full bg-yellow-500 text-white rounded px-4 py-2 hover:bg-yellow-600 transition">
-              Modifier un animal
+              Add a Habitat
             </button>
-          </li>
-          <li>
-            <button class="w-full bg-yellow-500 text-white rounded px-4 py-2 hover:bg-yellow-600 transition">
-              Supprimer un animal
-            </button>
-          </li>
-        </ul>
-      </section>
-
-      <section class="bg-white rounded shadow p-5">
-        <h3 class="text-xl font-semibold mb-4 border-b border-green-200 pb-2 text-green-800">Gestion des habitats</h3>
-        <ul class="space-y-3 text-gray-700">
-          <li>
-            <button class="w-full bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700 transition">
-              Ajouter un habitat
-            </button>
-          </li>
-          <li>
-            <button class="w-full bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700 transition">
-              Modifier un habitat
-            </button>
-          </li>
-          <li>
-            <button class="w-full bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700 transition">
-              Supprimer un habitat
-            </button>
+            </a>
           </li>
         </ul>
       </section>
@@ -60,127 +57,128 @@
    
 <div class="bg-gray-100 font-sans p-6">
 
-  <h1 class="text-3xl font-bold mb-8 text-green-900">Admin Dashboard - Liste Utilisateurs & Animaux</h1>
+  <h1 class="text-3xl font-bold mb-8 text-green-900">Admin Dashboard - Users & Animals List</h1>
 
   <section class="mb-12 bg-white rounded shadow p-6">
-    <h2 class="text-2xl font-semibold mb-4 text-green-800">Liste des utilisateurs</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-green-800">Users List</h2>
     <div class="overflow-x-auto">
       <table class="min-w-full table-auto border-collapse border border-gray-300">
         <thead class="bg-green-100">
           <tr>
             <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Nom</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
             <th class="border border-gray-300 px-4 py-2 text-left">Email</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Rôle</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Statut</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Role</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Status</th>
             <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="hover:bg-green-50">
-            <td class="border border-gray-300 px-4 py-2">1</td>
-            <td class="border border-gray-300 px-4 py-2">Ali Hassan</td>
-            <td class="border border-gray-300 px-4 py-2">ali@example.com</td>
-            <td class="border border-gray-300 px-4 py-2">Guide</td>
-            <td class="border border-gray-300 px-4 py-2">
-              <span class="text-green-600 font-semibold">Activé</span>
-            </td>
-            <td class="border border-gray-300 px-4 py-2 space-x-2">
-              <button class="text-blue-600 hover:underline">Modifier</button>
-              <button class="text-red-600 hover:underline">Activer/Désactiver</button>
-            </td>
-          </tr>
-          <tr class="hover:bg-green-50">
-            <td class="border border-gray-300 px-4 py-2">2</td>
-            <td class="border border-gray-300 px-4 py-2">Sara Benali</td>
-            <td class="border border-gray-300 px-4 py-2">sara@example.com</td>
-            <td class="border border-gray-300 px-4 py-2">Visiteur</td>
-            <td class="border border-gray-300 px-4 py-2">
-              <span class="text-red-600 font-semibold">Désactivé</span>
-            </td>
-            <td class="border border-gray-300 px-4 py-2 space-x-2">
-              <button class="text-blue-600 hover:underline">Modifier</button>
-              <button class="text-red-600 hover:underline">Activer/Désactiver</button>
-            </td>
-          </tr>
+          <?php 
+           //id_user, nom_user, email, user_role, user_Status
+            foreach($userlist as $uslis){
+              echo "
+                <tr class='hover:bg-green-50'>
+                  <td class='border border-gray-300 px-4 py-2'>{$uslis['id_user']}</td>
+                  <td class='border border-gray-300 px-4 py-2'>{$uslis['nom_user']}</td>
+                  <td class='border border-gray-300 px-4 py-2'>{$uslis['email']}</td>
+                  <td class='border border-gray-300 px-4 py-2'>{$uslis['user_role']}</td>
+                  <td class='border border-gray-300 px-4 py-2'>
+                    <span class='text-green-600 font-semibold'>{$uslis['user_Status']}</span>
+                  </td>
+                  <td class='border border-gray-300 px-4 py-2 space-x-2'>
+                    <button class='text-red-600 hover:underline'>Activate/Deactivate</button>
+                  </td>
+                </tr>
+                  ";
+            }
+          ?>
         </tbody>
       </table>
     </div>
   </section>
 
   <section class="bg-white rounded shadow p-6">
-    <h2 class="text-2xl font-semibold mb-4 text-green-800">Liste des animaux</h2>
+    <h2 class="text-2xl font-semibold mb-4 text-green-800">Habitat List</h2>
     <div class="overflow-x-auto">
       <table class="min-w-full table-auto border-collapse border border-gray-300">
         <thead class="bg-yellow-100">
           <tr>
             <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Nom</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Espèce</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Alimentation</th>
-            <th class="border border-gray-300 px-4 py-2 text-left">Pays d'origine</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
             <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="hover:bg-yellow-50">
-            <td class="border border-gray-300 px-4 py-2">101</td>
-            <td class="border border-gray-300 px-4 py-2">Lion de l'Atlas</td>
-            <td class="border border-gray-300 px-4 py-2">Panthera leo</td>
-            <td class="border border-gray-300 px-4 py-2">Carnivore</td>
-            <td class="border border-gray-300 px-4 py-2">Maroc</td>
-            <td class="border border-gray-300 px-4 py-2 space-x-2">
-              <button class="text-blue-600 hover:underline">Modifier</button>
-              <button class="text-red-600 hover:underline">Supprimer</button>
-            </td>
+          <?php 
+             foreach($habitatresult as $habi){
+              echo "
+                  <tr class='hover:bg-yellow-50'>
+                    <td class='border border-gray-300 px-4 py-2'>{$habi['id_habi']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$habi['nom_habi']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$habi['typeclimat']}</td>
+                    <td class='border border-gray-300 px-4 py-2 space-x-2'>
+                      <div class='flex justify-center gap-2'>
+                        <a href='./Pages/edit.php?id={$habi["id_habi"]}' 
+                        class='bg-yellow-400 text-white px-3 py-1 rounded'>Edit</a>
+                        <a href='./Pages/delete.php?id={$habi["id_habi"]}'
+                        class='bg-red-500 text-white px-3 py-1 rounded'>Delete</a>
+                      </div>
+                    </td>
+                  </tr>
+              ";
+             }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <p class="text-red-500">NOTE: You Can't Delete a Habitat if There is an Animals in it</p>
+    </div>
+  </section>
+
+  <section class="bg-white rounded shadow p-6">
+    <h2 class="text-2xl font-semibold mb-4 text-green-800">Animals List</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto border-collapse border border-gray-300">
+        <thead class="bg-yellow-100">
+          <tr>
+            <th class="border border-gray-300 px-4 py-2 text-left">ID</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Species</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Diet</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Country of Origin</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
           </tr>
-          <tr class="hover:bg-yellow-50">
-            <td class="border border-gray-300 px-4 py-2">102</td>
-            <td class="border border-gray-300 px-4 py-2">Girafe</td>
-            <td class="border border-gray-300 px-4 py-2">Giraffa camelopardalis</td>
-            <td class="border border-gray-300 px-4 py-2">Herbivore</td>
-            <td class="border border-gray-300 px-4 py-2">Afrique</td>
-            <td class="border border-gray-300 px-4 py-2 space-x-2">
-              <button class="text-blue-600 hover:underline">Modifier</button>
-              <button class="text-red-600 hover:underline">Supprimer</button>
-            </td>
-          </tr>
+        </thead>
+        <tbody>
+          <?php 
+              foreach($animresult as $ani){
+                echo "
+                   <tr class='hover:bg-yellow-50'>
+                    <td class='border border-gray-300 px-4 py-2'>{$ani['an_id']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$ani['ani_nom']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$ani['espèce']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$ani['alimentation']}</td>
+                    <td class='border border-gray-300 px-4 py-2'>{$ani['paysorigine']}</td>
+                    <td class='border border-gray-300 px-4 py-2 space-x-2'>
+                      <div class='mt-4 flex gap-2'>
+                        <a href='./edit.php?id={$ani["an_id"]}' 
+                        class='bg-yellow-400 text-white px-3 py-1 rounded'>Edit</a>
+                        <a href='./delete.php?id={$ani["an_id"]}'
+                        class='bg-red-500 text-white px-3 py-1 rounded'>Delete</a>
+                      </div>
+                    </td>
+                  </tr>
+                ";
+              }
+          ?>
         </tbody>
       </table>
     </div>
   </section>
+  
 </div>
-
-    <section class="mt-10 bg-white rounded shadow p-6">
-      <h3 class="text-2xl font-semibold mb-4 text-green-900">Statistiques</h3>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-gray-800">
-
-        <div class="bg-green-50 rounded p-4 text-center shadow">
-          <h4 class="text-lg font-semibold">Utilisateurs inscrits</h4>
-          <p class="text-4xl font-bold text-green-700 mt-2">1,234</p>
-          <p class="text-sm mt-1">Total / par pays</p>
-        </div>
-
-        <div class="bg-yellow-50 rounded p-4 text-center shadow">
-          <h4 class="text-lg font-semibold">Nombre d'animaux</h4>
-          <p class="text-4xl font-bold text-yellow-700 mt-2">456</p>
-          <p class="text-sm mt-1">Total en base</p>
-        </div>
-
-        <div class="bg-indigo-50 rounded p-4 text-center shadow">
-          <h4 class="text-lg font-semibold">Animaux les plus consultés</h4>
-          <p class="text-4xl font-bold text-indigo-700 mt-2">Lions, Girafes</p>
-          <p class="text-sm mt-1">Top 5</p>
-        </div>
-
-        <div class="bg-red-50 rounded p-4 text-center shadow">
-          <h4 class="text-lg font-semibold">Visites guidées réservées</h4>
-          <p class="text-4xl font-bold text-red-700 mt-2">789</p>
-          <p class="text-sm mt-1">Ce mois-ci</p>
-        </div>
-
-      </div>
-    </section>
 
   </main>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "./conn_sql.php";
 
  $id = $_GET['id'];
@@ -11,7 +12,7 @@ if(isset($_POST["confirm"])){
     $delete_table = "DELETE FROM animaux
                   WHERE an_id = $id";
     $conn->query($delete_table);
-    header("Location: ../index.php");
+    header("Location: ./DASHBOARD.php");
 }
 ?>
 <!DOCTYPE html>

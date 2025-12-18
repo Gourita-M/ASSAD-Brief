@@ -16,10 +16,10 @@ if (isset($_POST['update'])) {
                     alimentation ='$newfoodtype', 
                     an_image ='$newimg',
                     id_habitat ='$newhati' 
-                   WHERE ID_Animals = $id";
+                   WHERE an_id = $id";
     
-    $connection->query($update_sql);
-    header("Location: ../index.php");
+    $conn->query($update_sql);
+    header("Location: ./DASHBOARD.php");
     exit();
 echo $Newname, $newfoodtype, $newimg, $newhati;
 }

@@ -175,25 +175,16 @@
 <?php
   function addanimals($arr){
     echo "
-          <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
-    <img src='{$arr['image']}' class='rounded-t-lg h-48 w-full object-cover'>
+    <div class='bg-white rounded-lg shadow hover:shadow-lg transition'>
+    <img src='{$arr['an_image']}' class='rounded-t-lg h-48 w-full object-cover'>
 
     <div class='p-4'>
         <h4 class='font-bold text-lg'>{$arr['ani_nom']}</h4>
         <p class='text-sm text-gray-600'>Habitat: {$arr['nom_habi']}</p>
         <p class='text-sm text-gray-600'>Origin: {$arr['paysorigine']}</p>
-        <div class='flex justify-end gap-1 mt-4'>
-            <div class='mt-4 flex gap-2'>
-                    <a href='./Pages/edit.php?id={$arr["an_id"]}' 
-                    class='bg-yellow-400 text-white px-3 py-1 rounded'>Edit</a>
-                    <a href='./Pages/delete.php?id={$arr["an_id"]}'
-                    class='bg-red-500 text-white px-3 py-1 rounded'>Delete</a>
-            </div>
-        </div>
       </div>
     </div>
-
-                                ";
+    ";
                   
   }
 ?>

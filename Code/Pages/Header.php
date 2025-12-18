@@ -7,11 +7,12 @@
                 <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
                 <a href="#asaad" class="hover:text-yellow-300">Asaad</a>
                 <?php 
-                    if(isset($_POST['id'])){
+                    if(isset($_SESSION['username'])){
                         echo '
-                            <span class="font-semibold text-green-800">
+                            <span class="font-semibold text-green-300">
                                 Welcome Back
                             </span>
+                                '.$_SESSION['username'].'
                             <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
                                 Logout
                             </a>  
@@ -19,7 +20,7 @@
                     }
                     else {
                         echo '
-                            <a href="./login.php" class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
+                            <a href="./Pages/login.php" class="loginbtn bg-yellow-400 text-green-900 px-4 py-2 rounded font-semibold" >
                                 Login / Register
                             </a>
                         ';
