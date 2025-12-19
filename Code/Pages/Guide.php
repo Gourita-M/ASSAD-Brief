@@ -8,6 +8,7 @@
                FROM animaux";
   $total = $conn->query($sqlcount);
   $tot = $total->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
