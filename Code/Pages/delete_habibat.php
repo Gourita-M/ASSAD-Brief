@@ -1,15 +1,15 @@
 <?php
-include "./sql_connect.php";
+include "./conn_sql.php";
 $id = $_GET['id'];
 
-$getname = "SELECT * FROM Habitat
-            WHERE Habitat.IdHabitat = '$id';";
-$habiname = $connection->query($getname);
+$getname = "SELECT * FROM habitats
+            WHERE habitats.id_habi = '$id';";
+$habiname = $conn->query($getname);
 if(isset($_POST['confirm'])){
-    $delethabi = "DELETE FROM Habitat 
-                  WHERE Habitat.IdHabitat = '$id';";
-    $connection->query($delethabi);
-    header("Location: ./Add_habitat.php");
+    $delethabi = "DELETE FROM habitats 
+                  WHERE habitats.id_habi = '$id';";
+    $conn->query($delethabi);
+    header("Location: ./DASHBOARD.php");
     exit();
 }
 ?>
@@ -37,7 +37,7 @@ if(isset($_POST['confirm'])){
             <span class="font-semibold">
             <?php 
                foreach($habiname as $habi){
-                echo $habi['NomHab'];
+                echo $habi['nom_habi'];
                 };
              ?>
             </span>?</p>

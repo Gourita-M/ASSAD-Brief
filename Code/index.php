@@ -27,7 +27,7 @@
                 <a href="#tours" class="hover:text-yellow-300">Guided Tours</a>
                 <?php 
                     if(isset($_SESSION['role'])){
-                    if($_SESSION['role'] === 'ADMIN'){
+                    if($_SESSION['role'] === 'ADMIN' || $_SESSION['role'] === 'Guide'){
                         echo '<a href="./Pages/DASHBOARD.php" class="hover:text-yellow-300">DashBoard</a>';
                     }
                 }
@@ -38,7 +38,6 @@
                             <span class="font-semibold text-green-300">
                                 Welcome Back
                             </span>
-                                '.$_SESSION['username'].'
                             <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
                                 Logout
                             </a>  

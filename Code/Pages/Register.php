@@ -8,8 +8,8 @@
      $role = $_POST['role'];
      
     $sqlregis = "INSERT INTO utilisateurs
-                 (nom_user, email, user_role, motpasse_hash)
-                  VALUES ('$name', '$email', '$role', '$password');";
+                 (nom_user, email, user_role, motpasse_hash, user_Status)
+                  VALUES ('$name', '$email', '$role', '$password', 'inactive');";
         $conn->query($sqlregis);
 
     header("Location: ./login.php");

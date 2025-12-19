@@ -12,8 +12,8 @@
                             <span class="font-semibold text-green-300">
                                 Welcome Back
                             </span>
-                                '.$_SESSION['username'].'
-                            <a href="./Pages/logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
+                               
+                            <a href="./logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg">
                                 Logout
                             </a>  
                         ';
