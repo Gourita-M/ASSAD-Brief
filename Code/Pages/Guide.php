@@ -9,6 +9,11 @@
   $total = $conn->query($sqlcount);
   $tot = $total->fetch_assoc();
 
+  $sqlreser = "SELECT COUNT(*) as total
+                FROM reservations";
+  $resetotal = $conn->query($sqlreser);
+  $retota = $resetotal->fetch_assoc();
+    
 ?>
 
 <!DOCTYPE html>
@@ -35,17 +40,20 @@
 
     <div class="bg-white p-6 rounded-xl shadow">
       <p class="text-sm text-gray-500">Total Animals</p>
-      <p class="text-3xl font-bold text-green-700">86</p>
-    </div>
-
-    <div class="bg-white p-6 rounded-xl shadow">
-      <p class="text-sm text-gray-500">Guided Tours</p>
       <?php echo "<p class='text-3xl font-bold text-green-700'>{$tot['total']}</p>"; ?>
     </div>
 
     <div class="bg-white p-6 rounded-xl shadow">
+      <p class="text-sm text-gray-500">Guided Tours</p>
+      <p class="text-3xl font-bold text-green-700">1,248</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
       <p class="text-sm text-gray-500">Reservations</p>
-      <p class="text-3xl font-bold text-green-700">312</p>
+      <?php 
+       echo "<p class='text-3xl font-bold text-green-700'>{$retota['total']}</p>"
+      ?>
+      
     </div>
   </section>
 
@@ -55,7 +63,7 @@
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-      <a href="#" class="bg-blue-600 text-white py-3 rounded text-center hover:bg-blue-700 transition">
+      <a href="./guid_create.php" class="bg-blue-600 text-white py-3 rounded text-center hover:bg-blue-700 transition">
         Create Tour
       </a>
       <a href="#" class="bg-blue-600 text-white py-3 rounded text-center hover:bg-blue-700 transition">
